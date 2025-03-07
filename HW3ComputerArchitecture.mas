@@ -1,0 +1,141 @@
+﻿/ Joshua Herrera
+/ CGS-3269
+/ HW3
+/ 11/20/24
+
+ORG 100       / Starts the program
+
+/ Input and Output with Validation
+/ Read and validate A
+    Input           / Read input
+    Store A         / Set Variable
+    Load A			/ validation part below
+    Skipcond 800    / Skip next instruction if AC > 0
+    Jump InvalidInput   / If A <= 0, jump to InvalidInput
+    Output          / Print A
+
+/ Read and validate B
+    Input			/ Read input
+    Store B         / Set Variable
+    Load B
+    Skipcond 800
+    Jump InvalidInput
+    Output          / Print B
+
+/ Read and validate C
+    Input			/ Read input
+    Store C         / Set Variable
+    Load C
+    Skipcond 800
+    Jump InvalidInput
+    Output          / Print C
+
+/ Read and validate D
+    Input			/ Read input
+    Store D         / Set Variable
+    Load D
+    Skipcond 800
+    Jump InvalidInput
+    Output          / Print D
+
+/ Read and validate E
+    Input			/ Read input
+    Store E         / Set Variable
+    Load E
+    Skipcond 800
+    Jump InvalidInput
+    Output          / Printput E
+
+/ Multiply to ProductAB
+    Load A
+    Store Multiplicand
+    Load B
+    Store Multiplier
+    JNS Multiply
+    Load Result
+    Store ProductAB
+
+/ Multiply to ProductCD
+    Load C
+    Store Multiplicand
+    Load D
+    Store Multiplier
+    JNS Multiply
+    Load Result
+    Store ProductCD
+
+/ Multiply to ProductABCD
+    Load ProductAB
+    Store Multiplicand
+    Load ProductCD
+    Store Multiplier
+    JNS Multiply
+    Load Result
+    Store ProductABCD
+
+/ Multiply to Z
+    Load ProductABCD
+    Store Multiplicand
+    Load E
+    Store Multiplier
+    JNS Multiply
+    Load Result
+    Store Z
+
+/ Print function
+OutputResult,   Load Z
+    Output
+    Halt
+
+/ If invalid input is true
+InvalidInput,   Clear
+    Output          / Output zero
+    Halt
+
+/ Multiplication Function
+Multiply,   HEX 0              / Set return address
+    / Subcode starts here (Subfunction)
+    Load Zero
+    Store Product              / Initialize Product to 0
+    Load Multiplier
+    Store Counter              / Init counter with multiplier
+
+MultiplyLoop,   Load Counter
+    Skipcond 400               / Skip next instruction if Counter == 0
+    Jump MultiplyContinue      / If Counter != 0, proceed
+    Jump MultiplyEnd           / If Counter == 0, end multiplication
+
+MultiplyContinue,   Load Product
+    Add Multiplicand           / Product += Multiplicand
+    Store Product
+    Load Counter
+    Subt One                   / Decrement
+    Store Counter
+    Jump MultiplyLoop          / Repeat loop
+
+MultiplyEnd,    Load Product
+    Store Result               / Store result
+    JumpI Multiply             / Return to function call
+
+/ Vars and constants
+
+Multiplicand,   DEC 0          / Multiplicand for multiplication
+Multiplier,     DEC 0          / Multiplier for multiplication
+Product,        DEC 0          / Product of multiplication
+Counter,        DEC 0          / Counter for multiplication loop
+Result,         DEC 0          / Output of multiplication
+
+Zero,           DEC 0          / Constant zero
+One,            DEC 1          / Constant one
+
+A,      DEC 0                  / Set A
+B,      DEC 0                  / Set B
+C,      DEC 0                  / Set C
+D,      DEC 0                  / Set D
+E,      DEC 0                  / Set E
+ProductAB,  DEC 0              / Set ProductAB
+ProductCD,  DEC 0              / Set ProductCD
+ProductABCD, DEC 0             / Set ProductABCD
+Z,      DEC 0                  / Set Z
+
+END     / End Program

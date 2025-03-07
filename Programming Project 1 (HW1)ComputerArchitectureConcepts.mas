@@ -1,0 +1,76 @@
+﻿/Joshua Herrera
+
+/Creating the variables
+INPUT
+STORE A
+OUTPUT
+
+INPUT
+STORE B
+OUTPUT
+
+INPUT
+STORE C
+OUTPUT
+
+/Multiplication by repeated addition for the first two variables
+LOAD B
+STORE COUNT
+CLEAR
+STORE Z
+/Put a into the ac
+MULTIPLY_LOOP_AB, LOAD A
+ADD Z
+STORE Z
+LOAD COUNT
+/Decrement count while increasing z number
+SUBT ONE
+STORE COUNT
+/If count is ==0 the loop is skipped
+SKIPCOND 400
+	/end loop
+JUMP MULTIPLY_LOOP_AB
+
+/Multiply Z by C to get final figure
+LOAD Z
+STORE TEMP2
+/temp2 = z
+LOAD C
+/Used for looping
+STORE COUNT
+/empty ac
+CLEAR
+/Set z to 0 to multiply again
+STORE Z
+/Put z(from multiplied number) into ac
+MULTIPLY_LOOP_C,  LOAD TEMP2
+ADD Z
+/put back into z
+STORE Z
+LOAD COUNT
+SUBT ONE
+STORE COUNT
+/If count is == 0 the loop is skipped
+SKIPCOND 400
+	/end loop
+/Repeat loop
+JUMP MULTIPLY_LOOP_C
+
+/print final (z)
+LOAD Z
+/printf(z)
+OUTPUT
+/kill program
+HALT
+
+/Needed to set variables (Won't work above the variables??)
+A, DEC 0
+B, DEC 0
+C, DEC 0
+Z, DEC 0 
+/Temp storage for a*b
+TEMP2,DEC 0 
+/loop for multiplication decrementing
+COUNT,DEC 0
+/constant value of one to decrement count from
+ONE,DEC 1

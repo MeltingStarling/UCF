@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+//Magic The Gathering Replicate Final							
+//isn't working??
+
+void name(int playercount) {
+	int i = 0;
+	char names[15];
+	int bignumber = 60;
+	//char playercount[50];
+	for (char playercount[50]; playercount > 0; playercount[i]--) {
+		printf("What is your name?\n");
+		scanf_s("%s", &names[i]);
+		printf("Hello there %s\n", names[i]);
+		i++;
+	}
+		//  while (playercount > 0) {
+		//	printf("Hello, %s", username);
+		//	playercount--;
+		//}
+}
+
+void attributes() {
+	char attributeinput[30];
+	char chosendeck[30];
+	printf("What type of deck(attribute) would you like to play with? ");
+	printf("Original deck = 1, Car deck = 2: ");			
+	scanf("%s", attributeinput);
+	if (strcmp(attributeinput, "1") == 0)
+		printf("You've chosen Original, nice!\n");
+	else
+		printf("You've chosen Car deck, nice!\n");
+
+}
+
+void decision() {
+	char user_input[4];
+	printf("If you would like to play with a predictable computer input '1', Otherwise input anything else and you will play against a randomized computer:\n");
+	scanf_s("%s", user_input, sizeof(user_input));
+	if (strcmp(user_input, "1") == 0)
+		printf("You have chosen to face the predictable computer, good choice!");		//Initialize predictable computer FIXME
+	else
+		printf("You have chosen to face the randomized computer, good choice!");		//Initialize randomized computer FIXME
+}
+
+
+int main(void) {
+	int playercount;
+	printf("How many players will you have in this game?: ");
+	scanf("%i", &playercount);
+	name(playercount);										//Ask caleb how to send this varible up to name(fx)
+	attributes();
+	decision();
+	printf(name);
+	return 0;
+}

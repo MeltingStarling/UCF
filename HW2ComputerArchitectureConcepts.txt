@@ -1,0 +1,88 @@
+﻿/Joshua Herrera
+/9/25/24
+/Computer Architecture Concepts
+
+/Input and esure A isn't negative
+INPUT
+STORE A
+LOAD A
+SKIPCOND 800      /Skip loop if AC > 0
+JUMP NEGATIVE_INPUT
+OUTPUT            / output A
+
+/Input and esure B isn't negative
+INPUT
+STORE B
+LOAD B
+SKIPCOND 800
+JUMP NEGATIVE_INPUT
+OUTPUT
+
+/Input and esure C isn't negative
+INPUT
+STORE C
+LOAD C
+SKIPCOND 800
+JUMP NEGATIVE_INPUT
+OUTPUT
+
+/Input and esure D isn't negative
+INPUT
+STORE D
+LOAD D
+SKIPCOND 800
+JUMP NEGATIVE_INPUT
+OUTPUT
+
+/Get AB = (A * B) by repeated addition
+LOAD B
+STORE COUNT        / Set var to B
+CLEAR              / Start the ac from 0
+STORE AB           / Set AB to 0
+MULTIPLY_LOOP_AB, LOAD A        / Load A into ac for multiplication
+ADD AB
+STORE AB           / Insert product into AB
+LOAD COUNT
+SUBT ONE           / Decrement COUNT
+STORE COUNT
+SKIPCOND 400       / Exit loop if count = 0
+JUMP MULTIPLY_LOOP_AB
+
+/Get CD = (C * D) by repeated addition
+LOAD D
+STORE COUNT        / Set var to D
+CLEAR              / Start the ac from 0
+STORE CD           /Set CD to 0
+MULTIPLY_LOOP_CD, LOAD C        / Set C into CD for multiplication
+ADD CD
+STORE CD           / Accumulate the result in CD
+LOAD COUNT
+SUBT ONE           / Decrement COUNT
+STORE COUNT
+SKIPCOND 400       / Exit loop if count = 0
+JUMP MULTIPLY_LOOP_CD
+
+/Z=(AB+)(CD)
+ADD_RESULTS,      LOAD AB
+ADD CD
+STORE Z
+
+/ Output Z
+OUTPUT_RESULT,    LOAD Z
+OUTPUT
+HALT
+
+NEGATIVE_INPUT,   CLEAR
+OUTPUT
+HALT
+
+/Variables
+A,          DEC 0
+B,          DEC 0
+C,          DEC 0
+D,          DEC 0
+AB,         DEC 0
+CD,         DEC 0
+Z,          DEC 0
+COUNT,      DEC 0
+ONE,        DEC 1
